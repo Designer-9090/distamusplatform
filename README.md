@@ -1,43 +1,172 @@
-# Astro Starter Kit: Minimal
+# Distamus Platform
 
-```sh
-npm create astro@latest -- --template minimal
+Plataforma web desarrollada con **Astro** que presenta información sobre la solución Distamus y su evolución a lo largo del tiempo.
+
+## 📋 Descripción
+
+Distamus Platform es una aplicación web estática optimizada construida con Astro que proporciona:
+
+- **Página de inicio**: Presentación de la plataforma Distamus
+- **Sección de productos**: Información detallada sobre productos y servicios
+- **Evolución del producto**: Timeline interactivo que muestra la evolución de Distamus
+- **Información corporativa**: Página "Sobre nosotros" con detalles de la empresa
+
+## ✨ Características
+
+- 🚀 Sitio estático ultra-rápido con Astro
+- 📱 Diseño responsivo
+- ⚡ Optimización de rendimiento
+- 🎨 Componentes reutilizables
+- 📊 Datos estructurados en TypeScript
+
+## 🔧 Requisitos Previos
+
+- **Node.js**: v22.12.0 o superior
+- **npm** o **pnpm**
+
+## 📦 Instalación
+
+1. Clona o accede al repositorio:
+```bash
+cd distamus-platform
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+2. Instala las dependencias:
+```bash
+npm install
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🚀 Scripts Disponibles
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+# Iniciar servidor de desarrollo
+npm run dev
 
-Any static assets, like images, can be placed in the `public/` directory.
+# Compilar para producción
+npm run build
 
-## 🧞 Commands
+# Previsualizar la compilación
+npm run preview
 
-All commands are run from the root of the project, from a terminal:
+# Ejecutar comandos de Astro directamente
+npm run astro
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Modo de Desarrollo en Background
 
-## 👀 Want to learn more?
+Para ejecutar el servidor de desarrollo en background:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```bash
+astro dev --background
+```
+
+Gestiona el servidor con:
+```bash
+astro dev stop      # Detener el servidor
+astro dev status    # Ver estado del servidor
+astro dev logs      # Ver logs del servidor
+```
+
+## 📁 Estructura del Proyecto
+
+```
+src/
+├── pages/
+│   ├── index.astro              # Página de inicio
+│   ├── sobre-nosotros.astro     # Página de información corporativa
+│   └── producto/                # Sección de productos
+├── components/
+│   ├── ProductoEvolucion.astro  # Componente de timeline de evolución
+│   └── Topbar.astro             # Barra de navegación superior
+├── layouts/
+│   └── [Layouts compartidos]
+├── data/
+│   └── evolucion.ts             # Datos de evolución del producto
+└── pages/
+public/                          # Archivos estáticos
+
+dist/                            # Compilación final (generado)
+```
+
+## 🛠️ Desarrollo
+
+### Trabajar con Componentes Astro
+
+Los componentes están ubicados en `src/components/`. Consulta la [documentación de Astro](https://docs.astro.build/en/basics/astro-components/) para más detalles.
+
+### Agregar Nuevas Páginas
+
+Las páginas se crean en `src/pages/` siguiendo el patrón de enrutamiento de Astro.
+
+Referencia: [Routing en Astro](https://docs.astro.build/en/guides/routing/)
+
+### Gestionar Datos
+
+Los datos del proyecto se encuentran en `src/data/` y se importan en los componentes necesarios.
+
+### Estilos
+
+Puedes usar:
+- CSS tradicional
+- Tailwind CSS
+- CSS Modules
+- Sass/SCSS
+
+Consulta la [guía de estilos](https://docs.astro.build/en/guides/styling/)
+
+## 🏗️ Build y Despliegue
+
+### Compilar para Producción
+
+```bash
+npm run build
+```
+
+Esto genera una carpeta `dist/` con los archivos estáticos optimizados listos para desplegar.
+
+### Previsualizar la Compilación
+
+```bash
+npm run preview
+```
+
+Permite visualizar cómo se vería en producción en tu máquina local.
+
+## 🛠️ Tecnologías
+
+- **Astro 7.2.10**: Framework SSG (Static Site Generation)
+- **TypeScript**: Tipado estático
+- **Node.js**: v22.12.0+
+- **npm**: Gestor de paquetes
+
+## 📚 Documentación y Recursos
+
+- [Documentación oficial de Astro](https://docs.astro.build)
+- [Guides de Astro](https://docs.astro.build/en/guides/)
+- [Ejemplos de Astro](https://astro.build/showcase)
+
+### Guías Relevantes
+
+- [Routing y páginas dinámicas](https://docs.astro.build/en/guides/routing/)
+- [Componentes Astro](https://docs.astro.build/en/basics/astro-components/)
+- [Componentes de frameworks](https://docs.astro.build/en/guides/framework-components/)
+- [Gestión de contenido](https://docs.astro.build/en/guides/content-collections/)
+- [Internacionalización](https://docs.astro.build/en/guides/internationalization/)
+
+## 📝 Información Adicional
+
+Para más información sobre desarrollo y arquitectura del proyecto, consulta:
+- [AGENTS.md](./AGENTS.md) - Información de desarrollo
+- [CLAUDE.md](./CLAUDE.md) - Guías técnicas
+
+## 📄 Licencia y Copyright
+
+© 2026 **Distamus**. Todos los derechos reservados.
+
+**Aviso Importante**: Este proyecto es de uso exclusivo interno de Distamus. Está prohibida la distribución, reproducción, modificación o cualquier otro uso sin autorización expresa de Distamus.
+
+Acceso restringido solo al personal interno de Distamus.
+
+---
+
+**Última actualización**: 2026

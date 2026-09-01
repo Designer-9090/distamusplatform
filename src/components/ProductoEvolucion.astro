@@ -1,0 +1,285 @@
+---
+import type { Producto } from '../data/evolucion';
+
+interface Props {
+  producto: Producto;
+}
+
+const { producto } = Astro.props;
+---
+
+<article class="evo-item glass" id={producto.slug}>
+  <header class="evo-head">
+    <span class="evo-order">{producto.orden}</span>
+    <div class="evo-title">
+      <h3>{producto.nombre}</h3>
+      <p>{producto.lema}</p>
+    </div>
+    <span class="evo-actual">
+      <span>Versión actual</span>
+      <strong>{producto.versionActual}</strong>
+    </span>
+    <span class={`evo-state evo-state--${producto.estado}`}>{producto.estadoTexto}</span>
+  </header>
+
+  <ol class="evo-chain" aria-label={`Versiones de ${producto.nombre}`}>
+    {producto.versiones.map(version => (
+      <li class={version.estado ? `is-${version.estado}` : undefined}>
+        {version.etiqueta}
+        {version.estado === 'salto' && <span class="evo-gap" title="Hueco de numeración">salto</span>}
+      </li>
+    ))}
+  </ol>
+
+  <p class="evo-note">{producto.resumen}</p>
+
+  {producto.curiosidad && (
+    <p class="evo-curiosidad">
+      <span class="evo-curiosidad-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z" />
+        </svg>
+        Dato curioso
+      </span>
+      {producto.curiosidad.titulo}
+    </p>
+  )}
+
+  <a class="evo-link" href={`/producto/${producto.slug}`}>
+    Ver qué había en cada versión
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M5 12h14M12 5l7 7-7 7" />
+    </svg>
+  </a>
+</article>
+
+<style>
+  .evo-item {
+    padding: clamp(1.35rem, 3vw, 1.85rem);
+    border-radius: 20px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    scroll-margin-top: 90px;
+  }
+
+  .evo-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--pg-shadow-hover);
+  }
+
+  .evo-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .evo-order {
+    flex-shrink: 0;
+    padding: 4px 9px;
+    border-radius: 8px;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.22);
+    color: var(--pf-purple);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+  }
+
+  .evo-title {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .evo-title h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.15rem;
+  }
+
+  .evo-title p {
+    font-size: 0.92rem;
+    color: var(--pg-muted);
+  }
+
+  .evo-actual {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1.2;
+    flex-shrink: 0;
+  }
+
+  .evo-actual span {
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--pg-light);
+  }
+
+  .evo-actual strong {
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    background: var(--grad-platform);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .evo-state {
+    flex-shrink: 0;
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: var(--pg-surface);
+    border: 1px solid var(--pg-border);
+    color: var(--pg-muted);
+    white-space: nowrap;
+  }
+
+  .evo-state--activo      { background: rgba(16,185,129,0.1);  color: var(--pf-green);  border-color: rgba(16,185,129,0.25); }
+  .evo-state--desarrollo  { background: rgba(245,158,11,0.1);  color: var(--pf-amber);  border-color: rgba(245,158,11,0.25); }
+  .evo-state--proxima     { background: rgba(59,130,246,0.1);  color: var(--pf-blue);   border-color: rgba(59,130,246,0.25); }
+  .evo-state--integrado   { background: rgba(139,92,246,0.1);  color: var(--pf-purple); border-color: rgba(139,92,246,0.25); }
+  .evo-state--completado  { background: rgba(20,184,166,0.1);  color: var(--pf-teal);   border-color: rgba(20,184,166,0.25); }
+
+  /* La cadena se desplaza en horizontal si no cabe: partirla en varias filas
+     rompe la lectura de la secuencia. */
+  .evo-chain {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    margin-bottom: 1.1rem;
+    padding-bottom: 0.4rem;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .evo-chain li {
+    position: relative;
+    flex-shrink: 0;
+    padding: 5px 12px;
+    border-radius: 8px;
+    background: var(--pg-surface);
+    border: 1px solid var(--pg-border);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--pg-muted);
+  }
+
+  .evo-chain li + li::before {
+    content: '→';
+    position: absolute;
+    left: -1.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--pg-light);
+    font-size: 0.8rem;
+  }
+
+  .evo-chain .is-actual {
+    background: rgba(139, 92, 246, 0.14);
+    border-color: rgba(139, 92, 246, 0.4);
+    color: var(--pg-text);
+    font-weight: 700;
+  }
+
+  .evo-chain .is-desarrollo {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.35);
+    border-style: dashed;
+    color: var(--pf-amber);
+    font-weight: 700;
+  }
+
+  .evo-chain .is-proxima {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.35);
+    border-style: dashed;
+    color: var(--pf-blue);
+    font-weight: 700;
+  }
+
+  /* El hueco de numeración de Edu (v3 → v6) se marca en la propia cadena */
+  .evo-chain .is-salto::before {
+    content: '⇢';
+    color: var(--pf-amber);
+  }
+
+  .evo-gap {
+    margin-left: 0.45rem;
+    padding: 1px 6px;
+    border-radius: 100px;
+    background: rgba(245, 158, 11, 0.14);
+    color: var(--pf-amber);
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .evo-note {
+    font-size: 0.93rem;
+    line-height: 1.7;
+    color: var(--pg-muted);
+  }
+
+  /* Anticipo del dato curioso: el desarrollo completo está en la ficha. */
+  .evo-curiosidad {
+    margin-top: 0.9rem;
+    padding: 0.75rem 0.95rem;
+    border-radius: 12px;
+    border-left: 2px solid var(--pf-amber);
+    background: rgba(245, 158, 11, 0.07);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--pg-text);
+  }
+
+  .evo-curiosidad-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 0.5rem;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--pf-amber);
+    vertical-align: middle;
+  }
+
+  .evo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 0.9rem;
+    color: var(--pf-purple);
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .evo-link:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 780px) {
+    .evo-head {
+      flex-wrap: wrap;
+    }
+
+    .evo-actual {
+      align-items: flex-start;
+      order: 4;
+    }
+
+    .evo-state {
+      order: 3;
+    }
+  }
+</style>
