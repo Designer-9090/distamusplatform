@@ -1,194 +1,68 @@
 ---
-interface Props {
-  title: string;
-  description?: string;
-  keywords?: string;
-}
-
-const {
-  title,
-  description = 'El archivo histórico oficial del ecosistema Distamus. La línea evolutiva completa de cada producto, versión a versión.',
-  keywords = 'Distamus Platform, archivo histórico, evolución Distamus, versiones, ecosistema Distamus',
-} = Astro.props;
+interface Props { title: string; description?: string; }
+const { title, description = 'El archivo de la evolución, las versiones y la historia de los productos Distamus.' } = Astro.props;
 ---
-
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <meta name="theme-color" content="#070512" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content={keywords} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <script is:inline>
-      // Se aplica antes de pintar para que no haya destello de tema claro.
       (() => {
         try {
-          const guardado = localStorage.getItem('distamus-theme');
-          if (guardado) {
-            document.documentElement.setAttribute('data-theme', guardado);
-          } else {
-            const oscuro = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            document.documentElement.setAttribute('data-theme', oscuro ? 'dark' : 'light');
-          }
-        } catch {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        }
+          const saved = localStorage.getItem('distamus-theme');
+          const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const theme = saved === 'light' || saved === 'dark' ? saved : (dark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+          // La barra del navegador en móvil acompaña al tema.
+          document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'light' ? '#f6f4fb' : '#070512');
+        } catch { document.documentElement.setAttribute('data-theme', 'dark'); }
       })();
     </script>
   </head>
-
-  <body>
-    <slot />
-  </body>
+  <body><slot /></body>
 </html>
 
 <style is:global>
-  /* Misma paleta que el resto del ecosistema: negro suave, no negro puro. */
-  :root,
-  [data-theme='dark'] {
-    --pg-bg: #090d14;
-    --pg-surface: #111827;
-    --pg-text: #f1f5f9;
-    --pg-muted: #94a3b8;
-    --pg-light: #64748b;
-    --pg-border: rgba(255, 255, 255, 0.07);
-    --pg-glass: rgba(15, 23, 42, 0.55);
-    --pg-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
-    --pg-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.55);
+  :root, [data-theme='dark'] {
+    --pg-bg:#090d14; --pg-surface:#111827; --pg-text:#f1f5f9; --pg-muted:#94a3b8;
+    --pg-light:#64748b; --pg-border:rgba(255,255,255,.07); --pg-glass:rgba(15,23,42,.55);
+    --pg-shadow:0 4px 24px rgba(0,0,0,.35); --pg-shadow-hover:0 12px 40px rgba(0,0,0,.55);
+    --pf-purple:#8b5cf6; --pf-blue:#3b82f6; --pf-amber:#f59e0b; --pf-green:#10b981;
+    --pf-teal:#14b8a6; --grad-platform:linear-gradient(135deg,#8b5cf6,#3b82f6);
   }
-
   [data-theme='light'] {
-    --pg-bg: #ffffff;
-    --pg-surface: #f8fafc;
-    --pg-text: #0f172a;
-    --pg-muted: #475569;
-    --pg-light: #94a3b8;
-    --pg-border: rgba(15, 23, 42, 0.08);
-    --pg-glass: rgba(255, 255, 255, 0.65);
-    --pg-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
-    --pg-shadow-hover: 0 12px 40px rgba(15, 23, 42, 0.12);
+    --pg-bg:#fff; --pg-surface:#f8fafc; --pg-text:#0f172a; --pg-muted:#475569;
+    --pg-light:#94a3b8; --pg-border:rgba(15,23,42,.08); --pg-glass:rgba(255,255,255,.65);
+    --pg-shadow:0 4px 24px rgba(15,23,42,.06); --pg-shadow-hover:0 12px 40px rgba(15,23,42,.12);
   }
-
-  :root {
-    --pf-purple: #8b5cf6;
-    --pf-blue: #3b82f6;
-    --pf-amber: #f59e0b;
-    --pf-green: #10b981;
-    --pf-teal: #14b8a6;
-    --grad-platform: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    background: var(--pg-bg);
-    color: var(--pg-text);
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    transition: background-color 0.35s ease, color 0.35s ease;
-  }
-
-  img {
-    max-width: 100%;
-    display: block;
-  }
-
-  a {
-    color: inherit;
-  }
-
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 clamp(1rem, 4vw, 2.5rem);
-    width: 100%;
-  }
-
-  .text-grad {
-    background: var(--grad-platform);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .glass {
-    background: var(--pg-glass);
-    backdrop-filter: blur(12px) saturate(160%);
-    -webkit-backdrop-filter: blur(12px) saturate(160%);
-    border: 1px solid var(--pg-border);
-    box-shadow: var(--pg-shadow);
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .reveal { opacity: 1; transform: none; transition: none; }
-    *, *::before, *::after { animation: none !important; transition: none !important; }
-  }
+  *, *::before, *::after { box-sizing:border-box; }
+  html { width:100%; max-width:100%; overflow-x:clip; overflow-y:auto; }
+  body { width:100%; max-width:100%; overflow:visible; }
+  body { margin:0; background:var(--pg-bg); color:var(--pg-text); font-family:'Poppins',sans-serif; -webkit-font-smoothing:antialiased; }
+  img { max-width:100%; display:block; }
+  .container { width:100%; max-width:1100px; margin:0 auto; padding:0 clamp(1rem,4vw,2.5rem); }
+  .glass { background:var(--pg-glass); backdrop-filter:blur(12px) saturate(160%); border:1px solid var(--pg-border); box-shadow:var(--pg-shadow); }
+  .text-grad { background:var(--grad-platform); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
 </style>
 
 <script>
-  // Revelado al hacer scroll
-  const observador = new IntersectionObserver(
-    entradas => {
-      entradas.forEach(entrada => {
-        if (entrada.isIntersecting) {
-          entrada.target.classList.add('visible');
-          observador.unobserve(entrada.target);
-        }
-      });
-    },
-    { threshold: 0.08, rootMargin: '0px 0px -50px 0px' }
-  );
-
-  document.querySelectorAll('.reveal').forEach(el => observador.observe(el));
-
-  // Cambio de tema
-  const boton = document.getElementById('theme-toggle');
-  boton?.addEventListener('click', () => {
-    const actual = document.documentElement.getAttribute('data-theme');
-    const nuevo = actual === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', nuevo);
-    try {
-      localStorage.setItem('distamus-theme', nuevo);
-    } catch {
-      // Modo privado o almacenamiento bloqueado: el tema dura la sesión.
-    }
+  const themeButton = document.getElementById('theme-toggle');
+  themeButton?.addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('distamus-theme', next); } catch {}
   });
 </script>

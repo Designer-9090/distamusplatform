@@ -1,0 +1,28 @@
+import { ArrowRight, BookOpen, Box, Clock3, ExternalLink, FileQuestion, Flower2, Gamepad2, Joystick, Layers3, Lightbulb, Orbit } from 'lucide-react';
+import { motion, MotionConfig } from 'motion/react';
+import type { Producto } from '../../data/evolucion';
+import { ArchiveBackdrop, ArchiveFooter, ArchiveNav, BackLink } from './ArchiveChrome';
+
+const iconMap = { edu: BookOpen, multitasking: Layers3, octopus: Orbit, book: BookOpen, game: Gamepad2, time: Clock3, distapria: Joystick, fleurox: Flower2 };
+const enter = { hidden: { opacity: 0, y: 26 }, visible: { opacity: 1, y: 0 } };
+
+export default function ProductPage({ product, related }: { product: Producto; related: Pick<Producto, 'slug' | 'nombre' | 'orden' | 'versionActual'>[] }) {
+  const Icon = iconMap[product.slug as keyof typeof iconMap] || Box;
+  const versions = [...product.versiones].reverse();
+  const documented = product.versiones.filter(version => !version.sinRegistro).length;
+  return <MotionConfig reducedMotion="user"><main className="platform-main interior-main product-page"><ArchiveBackdrop /><ArchiveNav current="PRODUCTOS" />
+    <section className="product-hero interior-hero"><div className="product-hero-copy"><BackLink>Todos los productos</BackLink><motion.p initial="hidden" animate="visible" variants={enter} className="record-label">REGISTRO DE PRODUCTO / {product.orden}</motion.p><motion.h1 initial="hidden" animate="visible" variants={enter} transition={{ delay: .12 }}>{product.nombre.replace('Distamus ', 'DISTAMUS\n')}</motion.h1><motion.p initial="hidden" animate="visible" variants={enter} transition={{ delay: .24 }} className="product-lead">{product.lema}</motion.p></div>
+      <motion.div initial={{ opacity: 0, scale: .9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1 }} className="product-artifact"><div className="artifact-icon"><Icon size={60} strokeWidth={.8} /></div><span>{product.versionActual}</span><small>REGISTRO ACTUAL</small></motion.div>
+      <motion.aside initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: .35 }} className="product-status liquid-glass"><p>ESTADO</p><strong>{product.estadoTexto}</strong><span>{product.versionActualNota}</span></motion.aside>
+    </section>
+
+    <div className="interior-surface"><section className="interior-content product-overview"><header className="editorial-head"><span>01</span><div><p>VISTA DEL ARCHIVO</p><h2>EL REGISTRO.</h2></div><p>{product.resumen}</p></header><div className="record-stats"><div><strong>{product.versiones.length}</strong><span>Versiones totales</span></div><div><strong>{documented}</strong><span>Registros públicos</span></div><div><strong>{product.etapa === 'origen' ? 'FASE INICIAL' : 'INTEGRACIÓN'}</strong><span>Etapa del archivo</span></div><div><strong>{product.versionActual}</strong><span>Versión actual</span></div></div></section>
+
+      <section className="interior-content version-history"><header className="editorial-head"><span>02</span><div><p>MÁS RECIENTE — MÁS ANTIGUA</p><h2>HISTORIAL<br />DE VERSIONES.</h2></div><p>Cada versión es una capa preservada. Los registros recogen cambios, contexto y fuentes cuando están disponibles.</p></header><ol className="version-list">{versions.map((version, i) => <motion.li key={`${version.etiqueta}-${i}`} initial="hidden" whileInView="visible" viewport={{ once: true, amount: .12 }} variants={enter}><span className="version-sequence">{String(versions.length - i).padStart(2, '0')}</span><i className={`version-marker ${version.estado || ''}`} /><article className="version-object liquid-glass"><header><div><span>VERSIÓN</span><h3>{version.etiqueta}</h3></div><div className="version-meta">{version.fecha && <time>{version.fecha}</time>}{version.estado && <span>{version.estado}</span>}</div></header>{version.titular && <h4>{version.titular}</h4>}{version.cambios && <ul>{version.cambios.map(change => <li key={change}>{change}</li>)}</ul>}{version.sinRegistro && <p className="missing-record"><FileQuestion size={16} /> Esta versión existió, pero no conserva una entrada pública detallada.</p>}{version.fuente && <p className="source-record">FUENTE / {version.fuente.url ? <a href={version.fuente.url} target="_blank" rel="noreferrer">{version.fuente.texto} <ExternalLink size={11} /></a> : version.fuente.texto}</p>}</article></motion.li>)}</ol></section>
+
+      <section className="interior-content context-section"><div className="context-composition"><header className="context-heading"><span>03</span><div><p>CONTEXTO DEL ARCHIVO</p><h2><span>MÁS ALLÁ</span><span>DE LAS</span><span>VERSIONES.</span></h2></div></header><div className="context-side"><p className="context-intro">La numeración cuenta una parte. El contexto explica por qué el producto evolucionó así.</p><div className="context-grid">{product.curiosidad && <aside className="context-card liquid-glass"><Lightbulb size={19} /><span>NOTA DEL ARCHIVO</span><h3>{product.curiosidad.titulo}</h3><p>{product.curiosidad.texto}</p></aside>}<aside className="context-card liquid-glass"><Orbit size={19} /><span>CONTEXTO</span><h3>El lugar de {product.nombre}</h3><p>{product.nota}</p></aside></div></div></div></section>
+
+      <nav className="interior-content related-products" aria-label="Otros productos"><header><p>CONTINUAR EXPLORANDO</p><h2>OTROS REGISTROS.</h2></header><div>{related.map(item => <a href={`/producto/${item.slug}`} key={item.slug}><span>{item.orden}</span><strong>{item.nombre}</strong><small>{item.versionActual}</small><ArrowRight size={15} /></a>)}</div></nav><ArchiveFooter />
+    </div>
+  </main></MotionConfig>;
+}

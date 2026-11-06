@@ -274,12 +274,12 @@ export const productos: Producto[] = [
     lema: 'Otro de los productos originales.',
     etapa: 'origen',
     estado: 'proxima',
-    estadoTexto: 'v3 el 20 sep 2026',
+    estadoTexto: 'v3 aplazada, sin fecha',
     versionActual: 'v2',
     versionActualNota:
-      'La v3 se anunció en marzo de 2026, se pospuso en julio y tiene nueva fecha: 20 de septiembre de 2026 a las 20:00.',
+      'La v3 se anunció en marzo de 2026, se pospuso en julio y tenía nueva fecha, el 20 de septiembre de 2026. Esa fecha también se ha aplazado, y por ahora no hay otra.',
     resumen:
-      'Entre la v1 y la v2 hubo una v1.5 que amplió idiomas y accesibilidad. La v3 lleva desde marzo en camino.',
+      'Entre la v1 y la v2 hubo una v1.5 que amplió idiomas y accesibilidad. La v3 lleva desde marzo en camino y acumula dos aplazamientos.',
     versiones: [
       { etiqueta: 'v1', sinRegistro: true },
       {
@@ -303,7 +303,6 @@ export const productos: Producto[] = [
       },
       {
         etiqueta: 'v3',
-        fecha: '20 sep 2026 · 20:00',
         titular: 'Un sistema de conocimiento estructurado',
         estado: 'proxima',
         cambios: [
@@ -315,7 +314,7 @@ export const productos: Producto[] = [
       },
     ],
     nota:
-      'El 31 de julio de 2026 el equipo comunicó el aplazamiento sin fecha: había demasiados frentes abiertos a la vez y prefirieron mover una fecha antes que entregar cuatro proyectos a medias. La fecha definitiva llegó después: 20 de septiembre de 2026.',
+      'El 31 de julio de 2026 el equipo comunicó el aplazamiento sin fecha: había demasiados frentes abiertos a la vez y prefirieron mover una fecha antes que entregar cuatro proyectos a medias. Después se fijó el 20 de septiembre de 2026, que también se aplazó; este segundo aplazamiento no tiene entrada en el blog y consta por el registro del equipo. Lo que se describe de la v3 es lo anunciado, no una versión publicada.',
   },
   {
     slug: 'game',
@@ -385,13 +384,13 @@ export const productos: Producto[] = [
     nombre: 'Distamus Multitasking',
     lema: 'El producto que absorbió a Time.',
     etapa: 'integracion',
-    estado: 'desarrollo',
-    estadoTexto: 'v2.4 en desarrollo',
-    versionActual: 'v2.3',
+    estado: 'activo',
+    estadoTexto: 'v2.5 disponible',
+    versionActual: 'v2.5',
     versionActualNota:
-      'Publicada el 20 de agosto de 2026. La v2.4 está en desarrollo y es una de las próximas grandes actualizaciones del ecosistema.',
+      'Publicada el 16 de octubre de 2026, con entrada propia en el blog.',
     resumen:
-      'El producto mejor documentado del ecosistema: cada versión tiene su entrada en el blog, incluidos los malos momentos.',
+      'El producto mejor documentado del ecosistema: cada versión mayor tiene su entrada en el blog, incluidos los malos momentos.',
     versiones: [
       {
         etiqueta: 'v1',
@@ -458,7 +457,6 @@ export const productos: Producto[] = [
         etiqueta: 'v2.3',
         fecha: '20 ago 2026',
         titular: 'Entra en Flow',
-        estado: 'actual',
         cambios: [
           'Flow: nueva capa de continuidad que conserva el hilo de los proyectos y el contexto de trabajo.',
           'Tres piezas — Hilos para separar frentes, Actividad como línea temporal de cambios y decisiones, y Memoria de Flow para lo que no debe perderse.',
@@ -472,13 +470,51 @@ export const productos: Producto[] = [
       },
       {
         etiqueta: 'v2.4',
-        estado: 'desarrollo',
-        titular: 'En desarrollo',
-        cambios: ['Anunciada como una de las próximas grandes actualizaciones del ecosistema.'],
+        fecha: '22 sep 2026',
+        titular: 'Widgets, Informes y Dynamic Island',
+        cambios: [
+          'El Dashboard deja de ser solo un punto de entrada: Widgets y gráficas con la actividad de los últimos siete días, los pendientes y el progreso.',
+          'Informes: resumen de una semana, un mes o un rango elegido, exportable en PDF, CSV o Markdown. Describen, no evalúan: sin puntuaciones ni comparaciones entre usuarios.',
+          'Dynamic Island: el temporizador de Multi-Time, Focus Pomodoro y Notas sigue visible al salir de la sección. Tareas llegará más adelante.',
+          'Recordatorios al entrar: tareas pendientes, notas marcadas y próximos pasos de Flow, sin ser todavía avisos del sistema operativo.',
+          'Nuevo diseño de Flow: jerarquía más directa, paneles adaptables y menos interrupciones.',
+          'Time reúne por primera vez Tareas y Notas locales dentro de Multitasking, usables a la vez y sin salir del dispositivo.',
+          'Arreglos en el acceso: pegar el código de verificación desde cualquier casilla y ver los segundos exactos que faltan para reintentar.',
+        ],
+      },
+      {
+        etiqueta: 'v2.42',
+        fecha: '23 sep 2026',
+        titular: 'Alarmas conectadas y Multi-Time en el móvil',
+        fuente: { texto: 'Registro del equipo de Distamus Multitasking' },
+        cambios: [
+          'Versión menor, publicada al día siguiente de la v2.4 y sin entrada propia en el blog.',
+          'Las alarmas de Multi-Time se sincronizan entre dispositivos sin recargar, y se fusionan una a una: una copia antigua ya no borra las creadas en otro dispositivo.',
+          'Notificaciones en móviles y tablets Android, que antes no llegaban a mostrarse. Por ahora solo con Multitasking abierto o recién minimizado.',
+          'Multi-Time más cómodo con el dedo: se pasa de una pestaña en una, la barra inferior se puede deslizar y de Global se llega a Metas, y viceversa.',
+          'De 16 a 94 zonas horarias, con buscador renovado: por región, por país y sin tildes.',
+          'Se corrige el bucle de espera de 60 segundos al iniciar sesión desde un dispositivo nuevo.',
+          '«Reducir animaciones» alcanza por fin a contadores, scroll y fondos animados, no solo a lo hecho con CSS.',
+        ],
+      },
+      {
+        etiqueta: 'v2.5',
+        fecha: '16 oct 2026',
+        titular: 'Privacidad, estudio y seguridad',
+        estado: 'actual',
+        cambios: [
+          'Notas privadas por defecto: publicar pide confirmación y las notas públicas son anónimas salvo que se muestre el alias. Las que ya eran públicas pasaron a anónimas.',
+          'Notas con contraseña: se cifran en el navegador antes de guardarse; al servidor solo llega el texto cifrado y no hay forma de recuperarlas sin la contraseña.',
+          'Tareas de estudio: asignatura, subtareas, cuenta atrás hasta la fecha y estimación en pomodoros. El botón «Estudiar» abre Pomodoro con la tarea ya escrita.',
+          'Renovación de las cuatro herramientas de Distamus Time con un mismo diseño y cabecera; Multi-Time se reescribe por dentro sin perder funciones.',
+          'Cuentas y Account rediseñadas: secciones, lista de dispositivos y exportación de tareas y notas en JSON. Se arregla subir y quitar el avatar.',
+          'Más seguridad: rechazo de peticiones de otros sitios, límite de intentos por minuto, HTTPS obligatorio y respuestas con datos personales fuera de caché.',
+          'Página de planes pública: Free, Pro y Team llegarán en 2027, sin planes ilimitados y con un Free más amplio que hoy.',
+        ],
       },
     ],
     nota:
-      'Multitasking es el producto que recogió el testigo de Time. Su historia incluye la pérdida total del proyecto en enero de 2026 y una reconstrucción a contrarreloj que marcó la v1.5.',
+      'Multitasking es el producto que recogió el testigo de Time. Su historia incluye la pérdida total del proyecto en enero de 2026 y una reconstrucción a contrarreloj que marcó la v1.5. Tras la v2.5 siguen anunciados, sin fecha, la sesión persistente en Android, los avisos fuera de la aplicación y el Dynamic Island en Tareas.',
   },
   {
     slug: 'octopus',
@@ -486,11 +522,11 @@ export const productos: Producto[] = [
     nombre: 'Distamus Octopus',
     lema: 'Todavía sin versión estable tradicional.',
     etapa: 'integracion',
-    estado: 'desarrollo',
-    estadoTexto: 'Beta v0.75 el 5 sep 2026',
-    versionActual: 'Beta v0.5',
+    estado: 'activo',
+    estadoTexto: 'Beta v0.75 disponible',
+    versionActual: 'Beta v0.75',
     versionActualNota:
-      'Publicada el 23 de julio de 2026. La Beta v0.75 llega el 5 de septiembre de 2026.',
+      'Publicada el 1 de octubre de 2026, tras fallar dos fechas (el 5 y el 12 de septiembre). Llega con Distamus Octopus AI y el modo Vídeo; Document Mode, rehecho por dentro, sigue cerrado por mantenimiento hasta corregir sus errores.',
     resumen:
       'Octopus está en una fase de evolución temprana, a diferencia de Time, Edu o Book: aún no ha tenido una versión estable tradicional.',
     versiones: [
@@ -498,7 +534,7 @@ export const productos: Producto[] = [
         etiqueta: 'Beta v0.5',
         fecha: '23 jul 2026',
         titular: 'El estudio creativo abre',
-        estado: 'actual',
+        estado: 'pasada',
         cambios: [
           'Lanzamiento dentro de la actualización conjunta que sacó Book, Multitasking y Octopus a la vez.',
           'Estudio creativo y editor de diseño con dos modos de trabajo: Designer Mode y Document Mode.',
@@ -508,13 +544,16 @@ export const productos: Producto[] = [
       },
       {
         etiqueta: 'Beta v0.75',
-        fecha: '5 sep 2026',
-        titular: 'El tercer modo: editor de vídeo',
-        estado: 'desarrollo',
+        fecha: '1 oct 2026',
+        titular: 'IA en el navegador y el modo Vídeo',
+        estado: 'actual',
         cambios: [
-          'Un tercer modo de trabajo: un editor de vídeo en la web, junto a Designer Mode y Document Mode.',
-          'Ninguno de los dos modos anteriores desaparece.',
-          'Agosto se dedicó por completo a esta versión, con pocas publicaciones públicas a propósito: una versión sólida antes que muchos cambios pequeños.',
+          'Distamus Octopus AI: tres modelos (MI-GAN, LaMa ligero y LaMa) que borran de una imagen lo que se marque, sin que salga del equipo. Octopus recomienda uno según el ordenador y se activa de forma progresiva.',
+          'Un tercer modo de trabajo, Vídeo, con línea de tiempo por pistas y exportación en el navegador, junto a Designer Mode y Document Mode.',
+          'Document Mode, rehecho por dentro (páginas sincronizadas, márgenes por página, sangrado y más tamaños de hoja), llega cerrado por mantenimiento hasta corregir los errores de formato y de foco.',
+          'Designer Mode suma filtros y efectos, marcos con forma, reemplazar imagen, colores de SVG, duplicar página y grupos.',
+          'Crear en dos pasos (primero el modo, luego el formato), tema claro y oscuro desde la barra lateral y una página de Novedades dentro de la app.',
+          'Agosto se dedicó por completo a esta versión. Prevista para el 5 de septiembre, se aplazó al 12 y el 12 volvió a aplazarse; en los dos casos, por el JavaScript del editor.',
         ],
       },
     ],
@@ -528,18 +567,18 @@ export const productos: Producto[] = [
     lema: 'El caso contrario a todos los demás.',
     etapa: 'integracion',
     estado: 'completado',
-    estadoTexto: 'Sin versiones',
-    versionActual: 'Sin versiones',
+    estadoTexto: '1.01 disponible',
+    versionActual: '1.01',
     versionActualNota:
-      'Abrió el 22 de agosto de 2026 con 21 máquinas jugables. No sigue una numeración de versiones.',
+      'Publicada el 1 de octubre de 2026. Es 1.01 y no «v1.01»: Distapria es un producto consolidado cuya sala se ve igual de una versión a otra, y la «v» se reserva para productos que todavía cambian por fuera.',
     resumen:
-      'Distapria no sigue una evolución del tipo v1 → v2 → v3: salió ya en su estado previsto. Las mejoras que lleguen no se numeran como versiones nuevas.',
+      'Distapria no sigue una evolución del tipo v1 → v2 → v3: salió ya en su estado previsto. Sus actualizaciones corrigen y añaden juegos sin cambiar la sala, por eso se numeran sin «v».',
     versiones: [
       {
         etiqueta: '22 ago 2026',
         fecha: '22 ago 2026',
         titular: 'Se abren las puertas',
-        estado: 'actual',
+        estado: 'pasada',
         cambios: [
           'En desarrollo desde enero de 2026, definiendo su identidad y sus diferencias con Distamus Game.',
           'Dos alas arcade: Arcade Clásico, con las recreativas de siempre, y Arcade Mental, con lógica, deducción, números, palabras y percepción.',
@@ -548,15 +587,91 @@ export const productos: Producto[] = [
           'No sustituye a Distamus Game: son dos proyectos distintos que conviven en el ecosistema.',
         ],
       },
+      {
+        etiqueta: '1.01',
+        fecha: '1 oct 2026',
+        titular: 'Dos juegos nuevos y partidas que no se pierden',
+        estado: 'actual',
+        cambios: [
+          'Dos máquinas nuevas: el tres en raya, con monedas, eventos por ronda y una tienda (Pista, Siesta, Borrador y Seguro), y Simon dice.',
+          'Revisión de los juegos mentales: la primera casilla del Buscaminas nunca es mina, el Sudoku y los Nonogramas aceptan cualquier solución válida, Conecta números cambia de ruta en cada nivel y Memoria permite unos fallos por dificultad.',
+          'Cada partida empieza distinta y todos los mentales se juegan tocando la pantalla.',
+          'Las partidas se guardan solas y al volver se puede continuar donde se dejaron; el pasaporte .distapria lleva ya todos los juegos y las partidas guardadas.',
+          'Perder una vida se ve: un corazón se rompe en el centro de la pantalla.',
+          'Modo claro para toda la sala y controles táctiles más fáciles de pulsar en el móvil.',
+        ],
+      },
     ],
     nota:
       'El catálogo se inclinará hacia el Arcade Mental: habrá más máquinas mentales que clásicas.',
   },
+  {
+    slug: 'fleurox',
+    orden: '08',
+    nombre: 'Distamus Fleurox',
+    lema: 'La primera herramienta interna del ecosistema.',
+    etapa: 'integracion',
+    estado: 'activo',
+    estadoTexto: 'Herramienta interna',
+    versionActual: '22 sep 2026',
+    versionActualNota:
+      'Última actualización publicada: la familia Radiance, la capa 3D, las siluetas y el editor en cuatro pestañas. Fleurox no sigue una numeración de versiones pública.',
+    resumen:
+      'No es un producto para el público: es un sistema de generación visual procedural reservado para los equipos de Distamus. No guarda los fondos, guarda cómo generarlos — una seed y unos parámetros que la GPU convierte en la misma composición en cualquier dispositivo, sin imágenes pesadas ni IA generativa.',
+    versiones: [
+      {
+        etiqueta: '10 sep 2026',
+        fecha: '10 sep 2026',
+        titular: 'Presentación',
+        cambios: [
+          'Sistema visual procedural que genera fondos y composiciones mediante código, con WebGL y GLSL, en lugar de guardar colecciones de imágenes.',
+          'Cada composición sale de una seed: la misma seed vuelve a dar la misma composición, y una distinta da otra.',
+          'Nueve composiciones a la vez, cada una con su propia seed, paleta y configuración.',
+          'Puede incorporar títulos, categorías, fechas y elementos de marca a la composición.',
+          'Exportación prevista a 1080p, 1440p, 4K o resolución personalizada, volviendo a renderizar en lugar de escalar.',
+          'Sin IA generativa: matemáticas y shaders escritos a mano.',
+          'Reservado para los equipos de Distamus y usado en primer lugar en Distamus Blogs.',
+        ],
+      },
+      {
+        etiqueta: '12 sep 2026',
+        fecha: '12 sep 2026',
+        titular: 'Colecciones, paletas y 4K',
+        cambios: [
+          'Doce paletas nuevas, diecisiete en total, más la opción de que la seed elija.',
+          'Alias para los nombres largos de paleta: antes un nombre abreviado se ignoraba sin avisar.',
+          'Generación por tandas de nueve o dieciséis composiciones, para elegir comparando.',
+          'Composiciones de trazo orgánico, que aguantan mejor el texto encima.',
+          'Exportación real a 3840 × 2160, recalculada a esa resolución.',
+          'La biblioteca llega a 38 shaders en seis familias.',
+          'El propio equipo lo sigue llamando prototipo: quedaban pendientes la interfaz de edición, los equipos con GPU limitada y la integración fuera de Blogs.',
+        ],
+      },
+      {
+        etiqueta: '22 sep 2026',
+        fecha: '22 sep 2026',
+        titular: 'Fleurox es imparable',
+        estado: 'actual',
+        cambios: [
+          'Radiance, la octava familia: organiza el color por el ángulo respecto a un foco de luz, con seis generadores como Feather Plume, Lens Flare o Corona.',
+          'Supersampling a 1,5× y 2× para bordes limpios en pantallas de alta densidad.',
+          'Siluetas: 18 formas de recorte que no tocan el shader ni el determinismo de la seed.',
+          'Capa 3D opcional con Three.js, que solo se carga cuando se activa.',
+          'Logotipos y sellos PNG o SVG superpuestos con zonas seguras y color sincronizado con la paleta.',
+          'El editor pasa de una columna larga a cuatro pestañas —Forma, Color, Texto y Salida— con la paleta resuelta siempre a la vista.',
+          'Guardar en local, recuperar configuraciones JSON y compartir una composición por enlace.',
+        ],
+      },
+    ],
+    nota:
+      'Fleurox nace ligado a otro anuncio: los equipos de Distamus, hasta ahora vinculados a productos concretos, se ampliarán el próximo verano en todos los productos y servicios. Fleurox es una de las primeras herramientas pensadas para esa nueva estructura.',
+  },
 ];
 
 export const lineasAbiertas = [
-  { producto: 'Multitasking', destino: 'v2.4', detalle: 'Próxima gran actualización' },
-  { producto: 'Octopus', destino: 'Beta v0.75', detalle: 'Con editor de vídeo' },
+  { producto: 'Octopus', destino: 'Document Mode', detalle: 'Reapertura tras corregir errores · sin fecha' },
+  { producto: 'Book', destino: 'v3', detalle: 'Aplazada de nuevo, sin fecha' },
+  { producto: 'Multitasking', destino: 'Android', detalle: 'Sesión persistente y avisos · sin fecha' },
   { producto: 'Game', destino: 'Pixel Abyss', detalle: 'Un juego real para Windows' },
 ];
 

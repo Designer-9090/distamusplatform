@@ -156,8 +156,18 @@ const { producto } = Astro.props;
     margin-bottom: 1.1rem;
     padding-bottom: 0.4rem;
     overflow-x: auto;
-    scrollbar-width: thin;
+    /* La barra de scroll nativa cortaba la ficha con una línea gris a
+       media tarjeta. Se oculta y en su lugar la propia cadena se
+       desvanece por la derecha: indica que hay más versiones sin meter
+       un elemento de interfaz dentro del contenido. */
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, #000 86%, transparent 100%);
+    mask-image: linear-gradient(90deg, #000 86%, transparent 100%);
+    /* El desplazamiento se detiene en cada versión, no a medio chip. */
+    scroll-snap-type: x proximity;
   }
+  .evo-chain::-webkit-scrollbar { display: none; }
+  .evo-chain li { scroll-snap-align: start; }
 
   .evo-chain li {
     position: relative;
