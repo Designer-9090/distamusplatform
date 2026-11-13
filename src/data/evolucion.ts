@@ -388,7 +388,7 @@ export const productos: Producto[] = [
     estadoTexto: 'v2.5 disponible',
     versionActual: 'v2.5',
     versionActualNota:
-      'Publicada el 16 de octubre de 2026, con entrada propia en el blog.',
+      'Publicada el 20 de octubre de 2026, con entrada propia en el blog.',
     resumen:
       'El producto mejor documentado del ecosistema: cada versión mayor tiene su entrada en el blog, incluidos los malos momentos.',
     versiones: [
@@ -499,7 +499,7 @@ export const productos: Producto[] = [
       },
       {
         etiqueta: 'v2.5',
-        fecha: '16 oct 2026',
+        fecha: '20 oct 2026',
         titular: 'Privacidad, estudio y seguridad',
         estado: 'actual',
         cambios: [
@@ -523,10 +523,10 @@ export const productos: Producto[] = [
     lema: 'Todavía sin versión estable tradicional.',
     etapa: 'integracion',
     estado: 'activo',
-    estadoTexto: 'Beta v0.75 disponible',
-    versionActual: 'Beta v0.75',
+    estadoTexto: 'v0.8 disponible',
+    versionActual: 'v0.8',
     versionActualNota:
-      'Publicada el 1 de octubre de 2026, tras fallar dos fechas (el 5 y el 12 de septiembre). Llega con Distamus Octopus AI y el modo Vídeo; Document Mode, rehecho por dentro, sigue cerrado por mantenimiento hasta corregir sus errores.',
+      'Publicada el 13 de noviembre de 2026, con entrada propia en el blog. Es una versión de mejora sobre la Beta v0.75 y ya no lleva la etiqueta Beta. Document Mode está disponible.',
     resumen:
       'Octopus está en una fase de evolución temprana, a diferencia de Time, Edu o Book: aún no ha tenido una versión estable tradicional.',
     versiones: [
@@ -546,7 +546,7 @@ export const productos: Producto[] = [
         etiqueta: 'Beta v0.75',
         fecha: '1 oct 2026',
         titular: 'IA en el navegador y el modo Vídeo',
-        estado: 'actual',
+        estado: 'pasada',
         cambios: [
           'Distamus Octopus AI: tres modelos (MI-GAN, LaMa ligero y LaMa) que borran de una imagen lo que se marque, sin que salga del equipo. Octopus recomienda uno según el ordenador y se activa de forma progresiva.',
           'Un tercer modo de trabajo, Vídeo, con línea de tiempo por pistas y exportación en el navegador, junto a Designer Mode y Document Mode.',
@@ -554,6 +554,21 @@ export const productos: Producto[] = [
           'Designer Mode suma filtros y efectos, marcos con forma, reemplazar imagen, colores de SVG, duplicar página y grupos.',
           'Crear en dos pasos (primero el modo, luego el formato), tema claro y oscuro desde la barra lateral y una página de Novedades dentro de la app.',
           'Agosto se dedicó por completo a esta versión. Prevista para el 5 de septiembre, se aplazó al 12 y el 12 volvió a aplazarse; en los dos casos, por el JavaScript del editor.',
+        ],
+      },
+      {
+        etiqueta: 'v0.8',
+        fecha: '13 nov 2026',
+        titular: 'Cada página con su tamaño',
+        estado: 'actual',
+        cambios: [
+          'Versión de mejora sobre la Beta v0.75, centrada en Designer Mode. Deja de llevar la etiqueta Beta.',
+          'Cada página guarda su propio tamaño: un mismo proyecto puede tener páginas verticales, cuadradas y apaisadas.',
+          'Redimensionar pregunta si el tamaño va a la página actual o a una nueva, y el cambio se ve animado sin ensuciar el historial.',
+          'Las demás páginas ya no se vuelven a dibujar con cada cambio del lienzo, solo cuando cambian de verdad.',
+          'Negrita, cursiva y subrayado en la caja de texto, con Ctrl+B, Ctrl+I y Ctrl+U; el subrayado y el tachado ya se dibujan en el lienzo y al exportar.',
+          'Color solo para las letras seleccionadas, transparencia y degradados; el color personalizado ya se ve mientras se elige.',
+          'Document Mode vuelve a estar disponible.',
         ],
       },
     ],
@@ -669,7 +684,7 @@ export const productos: Producto[] = [
 ];
 
 export const lineasAbiertas = [
-  { producto: 'Octopus', destino: 'Document Mode', detalle: 'Reapertura tras corregir errores · sin fecha' },
+  { producto: 'Octopus', destino: 'Móvil', detalle: 'Todavía no disponible · sin fecha' },
   { producto: 'Book', destino: 'v3', detalle: 'Aplazada de nuevo, sin fecha' },
   { producto: 'Multitasking', destino: 'Android', detalle: 'Sesión persistente y avisos · sin fecha' },
   { producto: 'Game', destino: 'Pixel Abyss', detalle: 'Un juego real para Windows' },
